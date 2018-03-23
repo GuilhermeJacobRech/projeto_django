@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/style.css"/>
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Carros</title>
+</head>
+<body>
+
+{% if carros %}
+
+<table id = "tabela_carros" class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome do carro</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for carro in carros %}
+    <tr>
+        <th>{{forloop.counter}}</th>
+        <th>
+            <a href="/{{carro.id}}">
+                {{carro.name}}
+
+            </a>
+        </th>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+<form method="get" action=" http://127.0.0.1:8000/admin/carros/carro/">
+    <button type="submit">ALTERAR CARROS</button>
+</form>
+
+
+
+
+{% else %}
+
+
+<form method="get" action=" http://127.0.0.1:8000/admin/carros/carro/add/">
+    <button type="submit">INSERIR REGISTRO</button>
+</form>
+
+
+<h3>Nenhum carro cadastrado, clique no botão para inserir um registro</h3>
+
+{% endif %}
+</body>
+</html>
